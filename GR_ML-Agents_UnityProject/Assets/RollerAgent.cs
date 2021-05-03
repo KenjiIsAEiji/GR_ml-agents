@@ -41,8 +41,8 @@ public class RollerAgent : Agent
     public override void OnActionReceived(ActionBuffers actions)
     {
         Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = actions.ContinuousActions.Array[0];
-        controlSignal.y = actions.ContinuousActions.Array[1];
+        controlSignal.x = actions.ContinuousActions[0];
+        controlSignal.y = actions.ContinuousActions[1];
         rBody.AddForce(controlSignal * 10);
 
         float distanceToTarget = Vector3.Distance(this.transform.position, target.position);
