@@ -42,7 +42,7 @@ public class RollerAgent : Agent
     {
         Vector3 controlSignal = Vector3.zero;
         controlSignal.x = actions.ContinuousActions[0];
-        controlSignal.y = actions.ContinuousActions[1];
+        controlSignal.z = actions.ContinuousActions[1];
         rBody.AddForce(controlSignal * 10);
 
         float distanceToTarget = Vector3.Distance(this.transform.position, target.position);
@@ -55,5 +55,12 @@ public class RollerAgent : Agent
         if(this.transform.position.y < 0){
             EndEpisode();
         }
+    }
+
+    public override void Heuristic(in ActionBuffers actionsOut)
+    {
+        var continuousActions = actionsOut.ContinuousActions;
+        continuousActions[0] = Input.GetAxis("Horizontal");
+        continuousActions[1] = Input.GetAxis("Vertical");
     }
 }
