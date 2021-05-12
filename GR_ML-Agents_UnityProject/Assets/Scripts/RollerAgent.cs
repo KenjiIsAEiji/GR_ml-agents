@@ -20,10 +20,10 @@ public class RollerAgent : Agent
         if(this.transform.position.y < 0){
             this.rBody.angularVelocity = Vector3.zero;
             this.rBody.velocity = Vector3.zero;
-            this.transform.position = new Vector3(0.0f,0.0f,0.0f);
+            this.transform.localPosition = new Vector3(0.0f,0.0f,0.0f);
         }
 
-        target.position = new Vector3(
+        target.localPosition = new Vector3(
             Random.value * 8 - 4,
             0.5f,
             Random.value * 8 - 4
@@ -32,8 +32,8 @@ public class RollerAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(target.position);
-        sensor.AddObservation(this.transform.position);
+        sensor.AddObservation(target.localPosition);
+        sensor.AddObservation(this.transform.localPosition);
         sensor.AddObservation(rBody.velocity.x);
         sensor.AddObservation(rBody.velocity.y);
     }
@@ -45,14 +45,14 @@ public class RollerAgent : Agent
         controlSignal.z = actions.ContinuousActions[1];
         rBody.AddForce(controlSignal * 10);
 
-        float distanceToTarget = Vector3.Distance(this.transform.position, target.position);
+        float distanceToTarget = Vector3.Distance(this.transform.localPosition, target.localPosition);
 
         if(distanceToTarget < 1.42f){
             AddReward(1.0f);
             EndEpisode();
         }
 
-        if(this.transform.position.y < 0){
+        if(this.transform.localPosition.y < 0){
             EndEpisode();
         }
     }
