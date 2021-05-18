@@ -134,6 +134,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RollerArea (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -257,13 +261,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65109988}
-  m_LocalRotation: {x: 0.70710677, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 38.5, z: -0}
+  m_LocalRotation: {x: 0.6087609, y: -0, z: -0, w: 0.79335386}
+  m_LocalPosition: {x: 0, y: 11.1, z: -4.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!114 &65109992
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -306,6 +310,10 @@ PrefabInstance:
     - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_Name
       value: RollerArea (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
@@ -363,6 +371,10 @@ PrefabInstance:
     - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_Name
       value: RollerArea (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
@@ -514,6 +526,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RollerArea (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -570,6 +586,10 @@ PrefabInstance:
     - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_Name
       value: RollerArea (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
@@ -628,6 +648,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RollerArea (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -684,6 +708,10 @@ PrefabInstance:
     - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_Name
       value: RollerArea (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
@@ -742,6 +770,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RollerArea (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -795,6 +827,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6447472566943085985, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 3b6dbfb64dbff5847bd9e9f8cf7d2355, type: 3}
     - target: {fileID: 6447472567969920516, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_Name
       value: RollerArea
@@ -813,7 +849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6447472567969920517, guid: ce8ecea762cff234db523e28495e55b9, type: 3}
       propertyPath: m_LocalRotation.w
