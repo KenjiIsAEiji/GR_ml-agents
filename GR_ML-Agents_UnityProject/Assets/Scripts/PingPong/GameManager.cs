@@ -40,6 +40,9 @@ public class GameManager : MonoBehaviour
     // エピソード完了時に呼ばれる
     public void EndEpisode(int agentId)
     {
+        // エピソード完了時(スコア発生時)
+        // 得点する側にはプラス報酬
+        // 失点する側にはマイナス報酬
         if(agentId == 0){
             agents[0].AddReward(1.0f);
             agents[1].AddReward(-1.0f);
@@ -48,6 +51,7 @@ public class GameManager : MonoBehaviour
             agents[1].AddReward(1.0f);
         }
 
+        // エピソード完了および環境をリセット
         agents[0].EndEpisode();
         agents[1].EndEpisode();
         Reset();
