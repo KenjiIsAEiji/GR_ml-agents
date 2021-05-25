@@ -21,8 +21,8 @@ public class GameManager : MonoBehaviour
     public void Reset()
     {
         // エージェント(パドル)の位置をリセット
-        agents[0].gameObject.transform.localPosition = new Vector3(0.0f,0.5f,-0.7f);
-        agents[1].gameObject.transform.localPosition = new Vector3(0.0f,0.5f,0.7f);
+        agents[0].gameObject.transform.localPosition = new Vector3(0.0f,0.5f,-7.0f);
+        agents[1].gameObject.transform.localPosition = new Vector3(0.0f,0.5f,7.0f);
 
         // ボールの位置をリセット
         ball.transform.localPosition = new Vector3(0.0f, 0.25f, 0.0f);
