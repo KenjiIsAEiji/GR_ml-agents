@@ -20,32 +20,36 @@ public class PingPongAgent : Agent
     // 観察取得時に呼ばれる
     public override void CollectObservations(VectorSensor sensor)
     {
-        // 
+        // 各ベクトルをエージェントから見た方向に変更
         float dir = (agentId == 0) ? 1.0f : -1.0f;
 
-        sensor.AddObservation(this.ball.transform.localPosition.x * dir);   //
-        sensor.AddObservation(this.ball.transform.localPosition.z * dir);   //
-        sensor.AddObservation(this.ballRb.velocity.x * dir);    //
-        sensor.AddObservation(this.ballRb.velocity.x * dir);    //
-        sensor.AddObservation(this.transform.localPosition.x * dir);    //
+        //ボールの一座標(x,z)
+        sensor.AddObservation(this.ball.transform.localPosition.x * dir);   
+        sensor.AddObservation(this.ball.transform.localPosition.z * dir);
+        
+        //ボールの速度
+        sensor.AddObservation(this.ballRb.velocity.x * dir);
+        sensor.AddObservation(this.ballRb.velocity.x * dir);
+        
+        // エージェント(パドル位置)
+        sensor.AddObservation(this.transform.localPosition.x * dir);
     }
 
-    // 
+    // パドルとボールの衝突開始時に呼ばれる
     void OnCollisionEnter(Collision collisionInfo)
     {
-        //
+        // 報酬
         AddReward(0.1f);
     }
 
-    // 
+    // 行動実行時に呼ばれる
     public override void OnActionReceived(ActionBuffers actions)
     {
-        // 
+        // エージェントの移動
         float dir = (agentId == 0) ? 1.0f : -1.0f;
         int action = (int)actions.DiscreteActions[0];
         Vector3 pos = this.transform.localPosition;
 
-        // 
         if(action == 1){
             pos.x -= 0.2f * dir;
         }else if(action == 2){
@@ -57,7 +61,7 @@ public class PingPongAgent : Agent
         this.transform.localPosition = pos;
     }
 
-    // 
+    // ヒューリスティックモードでの行動決定時に呼ばれる
     public override void Heuristic(in ActionBuffers actionsOut)
     {
         var DiscreteActions = actionsOut.DiscreteActions;
