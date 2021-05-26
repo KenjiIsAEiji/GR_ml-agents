@@ -56,8 +56,8 @@ public class PingPongAgent : Agent
             pos.x += 0.2f * dir;
         }
 
-        if(pos.x < -0.4f) pos.x = -4.0f;
-        if(pos.x > 0.4f) pos.x = 4.0f;
+        if(pos.x < -4.0f) pos.x = -4.0f;
+        if(pos.x > 4.0f) pos.x = 4.0f;
         this.transform.localPosition = pos;
     }
 
@@ -66,7 +66,7 @@ public class PingPongAgent : Agent
     {
         var DiscreteActions = actionsOut.DiscreteActions;
         DiscreteActions[0] = 0;
-        if(Input.GetKey(KeyCode.LeftArrow)) DiscreteActions[0] = 1;
-        if(Input.GetKey(KeyCode.RightArrow)) DiscreteActions[0] = 2;
+        if(Input.GetKey(KeyCode.A)) DiscreteActions[0] = 1;
+        if(Input.GetKey(KeyCode.D)) DiscreteActions[0] = 2;
     }
 }
