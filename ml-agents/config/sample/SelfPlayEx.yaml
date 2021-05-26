@@ -25,8 +25,7 @@ behaviors:
     time_horizon: 64
     summary_freq: 1000
     threaded: true
-
-    # セルフプレイの設定項目
+    
     self_play:
       save_steps: 50000
       team_change: 100000
