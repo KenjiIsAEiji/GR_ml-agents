@@ -10,9 +10,9 @@ using Unity.MLAgents;
 public class GameManager : MonoBehaviour
 {
     public Agent[] agents;
-    public GameObject[] Bullets;
+    public List<GameObject> bullets;
 
-    [SerializeField] Vector2 stageSize;
+    [SerializeField] Vector2 spawnRange;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +22,33 @@ public class GameManager : MonoBehaviour
     
     public void AgentReset()
     {
-        // エージェントの初期化(位置や向きをリセット)
-        // サイドもランダムに変化させる
+        // エージェントの初期化(位置(x,z)や向きをリセット)
+        // サイドもランダムに変化させる(x軸反転)
         Vector3 pos0, pos1;
         pos0 = pos1 = new Vector3(5.0f,0.5f,0);
+
+        Vector2 randomOffset = new Vector2(
+            Random.Range(-spawnRange.x,spawnRange.x),
+            Random.Range(-spawnRange.y,spawnRange.y)
+        );
+        pos0.x += randomOffset.x;
+        pos0.z += randomOffset.y;
+
+        randomOffset = new Vector2(
+            Random.Range(-spawnRange.x,spawnRange.x),
+            Random.Range(-spawnRange.y,spawnRange.y)
+        );
+        pos1.x += randomOffset.x;
+        pos1.z += randomOffset.y;
+        
+        if(Random.value < 0.5f){
+            pos0.x = -pos0.x;
+        }else{
+            pos1.x = -pos1.x;
+        }
+
+        agents[0].gameObject.transform.localPosition = pos0;
+        agents[1].gameObject.transform.localPosition = pos1;
 
         // 弾丸をすべてDestroy
 
