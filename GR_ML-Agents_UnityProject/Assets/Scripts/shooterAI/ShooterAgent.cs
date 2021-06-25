@@ -7,7 +7,6 @@ public class ShooterAgent : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float firePower = 10f;
-    [SerializeField] float bulletLifeTime = 1.5f;
     [SerializeField] Transform muzzleTransform;
     
     public int agentId;
@@ -42,7 +41,8 @@ public class ShooterAgent : MonoBehaviour
             );
 
             bullet.GetComponent<Rigidbody>().AddForce(muzzleTransform.forward * firePower,ForceMode.Impulse);
-            Destroy(bullet,bulletLifeTime);
+            bullet.GetComponent<Bullet>().gameManagerRef = gameManager;
+            gameManager.bullets.Add(bullet);
         }
     }
 

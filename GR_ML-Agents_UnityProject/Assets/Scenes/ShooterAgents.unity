@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 435625538}
   m_Layer: 0
   m_Name: wall (3)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -451,7 +451,6 @@ MonoBehaviour:
   gameManager: {fileID: 1344997823}
   bulletPrefab: {fileID: 4645518969485378247, guid: 88a8ecc80268d664fbd9f796ec6273eb, type: 3}
   firePower: 15
-  bulletLifeTime: 1.5
   muzzleTransform: {fileID: 1182810605}
   agentId: 1
   moveSpeed: 5
@@ -564,7 +563,7 @@ GameObject:
   - component: {fileID: 950773217}
   m_Layer: 0
   m_Name: wall
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -760,7 +759,6 @@ MonoBehaviour:
   gameManager: {fileID: 1344997823}
   bulletPrefab: {fileID: 4645518969485378247, guid: 88a8ecc80268d664fbd9f796ec6273eb, type: 3}
   firePower: 15
-  bulletLifeTime: 1.5
   muzzleTransform: {fileID: 1680729654}
   agentId: 0
   moveSpeed: 5
@@ -954,7 +952,7 @@ GameObject:
   - component: {fileID: 1651549377}
   m_Layer: 0
   m_Name: wall (1)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1079,7 +1077,7 @@ GameObject:
   - component: {fileID: 1767762324}
   m_Layer: 0
   m_Name: wall (2)
-  m_TagString: Untagged
+  m_TagString: wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
