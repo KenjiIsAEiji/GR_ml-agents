@@ -59,8 +59,14 @@ public class GameManager : MonoBehaviour
         // agents[0].gameObject.transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
         // agents[1].gameObject.transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
         
-        // 弾丸をすべてDestroy
+        agents[0].GetComponent<ShooterAgent>().AgentRestart();
+        agents[1].GetComponent<ShooterAgent>().AgentRestart();
 
+        // 弾丸をすべてDestroy
+        foreach(GameObject liveBullet in bullets){
+            Destroy(liveBullet);
+        }
+        bullets.Clear();
     }
 
     // 得点処理(ヒットした側のエージェントから呼ばれる)
@@ -78,7 +84,7 @@ public class GameManager : MonoBehaviour
         // // 
         // agents[0].EndEpisode();
         // agents[1].EndEpisode();
-        Debug.Log("end episode");
+        Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
     }
 }

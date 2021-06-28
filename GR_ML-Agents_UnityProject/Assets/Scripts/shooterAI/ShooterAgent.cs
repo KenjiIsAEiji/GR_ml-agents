@@ -7,6 +7,8 @@ public class ShooterAgent : MonoBehaviour
     [SerializeField] GameManager gameManager;
     [SerializeField] GameObject bulletPrefab;
     [SerializeField] float firePower = 10f;
+    [SerializeField] float coolTime = 2.0f;
+    private bool firing = false;
     [SerializeField] Transform muzzleTransform;
     
     public int agentId;
@@ -33,16 +35,11 @@ public class ShooterAgent : MonoBehaviour
         this.transform.Rotate(rotatingVec * rotateSpeed * Time.deltaTime);
 
         // bullet firing
-        if(Input.GetKeyDown(KeyCode.Space)){
-            GameObject bullet = Instantiate(
-                bulletPrefab,
-                muzzleTransform.position,
-                Quaternion.identity
-            );
-
-            bullet.GetComponent<Rigidbody>().AddForce(muzzleTransform.forward * firePower,ForceMode.Impulse);
-            bullet.GetComponent<Bullet>().gameManagerRef = gameManager;
-            gameManager.bullets.Add(bullet);
+        if(Input.GetKey(KeyCode.Space)){
+            //Debug.Log("trigger down");
+            if(!firing){
+                StartCoroutine(FireTimer());
+            }
         }
     }
 
@@ -63,5 +60,39 @@ public class ShooterAgent : MonoBehaviour
         // Debug.Log(vel);
 
         agentRb.AddRelativeForce(vel * agentRb.mass * agentRb.drag / (1f - agentRb.drag * Time.fixedDeltaTime));
+    }
+
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        if(collisionInfo.gameObject.CompareTag("bullet")){
+            this.gameManager.EndEpisode(this.agentId);
+        }
+    }
+
+    public void AgentRestart(){
+        StopCoroutine(FireTimer());
+        firing = false;
+    }
+
+    void BulletFire()
+    {
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            muzzleTransform.position,
+            Quaternion.identity
+        );
+
+        bullet.GetComponent<Rigidbody>().AddForce(muzzleTransform.forward * firePower,ForceMode.Impulse);
+        bullet.GetComponent<Bullet>().gameManagerRef = gameManager;
+        gameManager.bullets.Add(bullet);
+    }
+
+    IEnumerator FireTimer()
+    {
+        BulletFire();
+        firing = true;
+        //Debug.Log("now Firing");
+        yield return new WaitForSeconds(coolTime);
+        firing = false;
     }
 }
