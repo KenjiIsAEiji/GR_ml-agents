@@ -443,19 +443,24 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 901105994}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3d850b249596144458aee4a499066dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  moveSpeed: 5
+  rotateSpeed: 200
   gameManager: {fileID: 1344997823}
   bulletPrefab: {fileID: 4645518969485378247, guid: 88a8ecc80268d664fbd9f796ec6273eb, type: 3}
   firePower: 15
   coolTime: 2
   muzzleTransform: {fileID: 1182810605}
   agentId: 1
-  moveSpeed: 5
-  rotateSpeed: 200
+  opponentTransform: {fileID: 0}
 --- !u!54 &901105996
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -658,7 +663,9 @@ GameObject:
   - component: {fileID: 1022258495}
   - component: {fileID: 1022258494}
   - component: {fileID: 1022258499}
+  - component: {fileID: 1022258501}
   - component: {fileID: 1022258498}
+  - component: {fileID: 1022258500}
   m_Layer: 0
   m_Name: ShooterAgent_A
   m_TagString: Agent
@@ -757,14 +764,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d850b249596144458aee4a499066dd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 10000
+  moveSpeed: 5
+  rotateSpeed: 200
   gameManager: {fileID: 1344997823}
   bulletPrefab: {fileID: 4645518969485378247, guid: 88a8ecc80268d664fbd9f796ec6273eb, type: 3}
   firePower: 15
   coolTime: 2
   muzzleTransform: {fileID: 1680729654}
   agentId: 0
-  moveSpeed: 5
-  rotateSpeed: 200
+  opponentTransform: {fileID: 901106000}
 --- !u!54 &1022258499
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -781,6 +793,50 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1022258500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022258493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 5
+  TakeActionsBetweenDecisions: 1
+--- !u!114 &1022258501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1022258493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BrainParameters:
+    VectorObservationSize: 4
+    NumStackedVectorObservations: 2
+    m_ActionSpec:
+      m_NumContinuousActions: 0
+      BranchSizes: 03000000030000000300000002000000
+    VectorActionSize: 03000000030000000300000002000000
+    VectorActionDescriptions: []
+    VectorActionSpaceType: 0
+    hasUpgradedBrainParametersWithActionSpec: 1
+  m_Model: {fileID: 0}
+  m_InferenceDevice: 0
+  m_BehaviorType: 1
+  m_BehaviorName: ShooterAgents
+  TeamId: 0
+  m_UseChildSensors: 1
+  m_UseChildActuators: 1
+  m_ObservableAttributeHandling: 0
 --- !u!1 &1182810604
 GameObject:
   m_ObjectHideFlags: 0
