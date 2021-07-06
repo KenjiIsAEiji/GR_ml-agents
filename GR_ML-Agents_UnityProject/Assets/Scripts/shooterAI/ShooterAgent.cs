@@ -186,6 +186,9 @@ public class ShooterAgent : Agent
         bullet.GetComponent<Rigidbody>().AddForce(muzzleTransform.forward * firePower,ForceMode.Impulse);
         bullet.GetComponent<Bullet>().gameManagerRef = gameManager;
         gameManager.bullets.Add(bullet);
+
+        // Bullet shooting Rewerd
+        AddReward(0.1f);
     }
 
     IEnumerator FireTimer()

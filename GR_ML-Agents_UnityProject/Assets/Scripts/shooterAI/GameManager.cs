@@ -9,8 +9,8 @@ using Unity.MLAgents;
 
 public class GameManager : MonoBehaviour
 {
-    // public Agent[] agents;
-    public GameObject[] agents;
+    public Agent[] agents;
+    // public GameObject[] agents;
     public List<GameObject> bullets;
 
     [SerializeField] Vector2 spawnRange;
@@ -48,16 +48,16 @@ public class GameManager : MonoBehaviour
             pos1.x = -pos1.x;
         }
 
-        // agents[0].gameObject.transform.localPosition = pos0;
-        // agents[1].gameObject.transform.localPosition = pos1;
-        agents[0].transform.localPosition = pos0;
-        agents[1].transform.localPosition = pos1;
+        // agents[0].transform.localPosition = pos0;
+        // agents[1].transform.localPosition = pos1;
+        agents[0].gameObject.transform.localPosition = pos0;
+        agents[1].gameObject.transform.localPosition = pos1;
         
         // ランダムな方向に初期化
-        agents[0].transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
-        agents[1].transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
-        // agents[0].gameObject.transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
-        // agents[1].gameObject.transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
+        // agents[0].transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
+        // agents[1].transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
+        agents[0].gameObject.transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
+        agents[1].gameObject.transform.localEulerAngles = new Vector3(0,Random.Range(-180.0f,180.0f),0);
         
         agents[0].GetComponent<ShooterAgent>().AgentRestart();
         agents[1].GetComponent<ShooterAgent>().AgentRestart();
@@ -72,18 +72,18 @@ public class GameManager : MonoBehaviour
     // 得点処理(ヒットした側のエージェントから呼ばれる)
     public void EndEpisode(int agentId)
     {
-        // 報酬を与える
-        // if(agentId == 0){
-        //     agents[0].AddReward(-1.0f);
-        //     agents[1].AddReward(1.0f);
-        // }else{
-        //     agents[0].AddReward(1.0f);
-        //     agents[1].AddReward(-1.0f);
-        // }
+        // All agents add reward
+        if(agentId == 0){
+            agents[0].AddReward(-1.0f);
+            agents[1].AddReward(1.0f);
+        }else{
+            agents[0].AddReward(1.0f);
+            agents[1].AddReward(-1.0f);
+        }
 
-        // // 
-        // agents[0].EndEpisode();
-        // agents[1].EndEpisode();
+        // All agents end Episode
+        agents[0].EndEpisode();
+        agents[1].EndEpisode();
         Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
     }
