@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     void OnCollisionEnter(Collision collisionInfo)
     {
         GameObject hitObject = collisionInfo.gameObject;
-        if(hitObject.CompareTag("wall")){
+        if(hitObject.CompareTag("wall") || hitObject.CompareTag("bullet")){
             RemoveBullet();
         }
     }
