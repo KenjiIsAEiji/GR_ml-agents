@@ -171,7 +171,7 @@ public class ShooterAgent : Agent
     }
 
     public void AgentRestart(){
-        StopCoroutine(FireTimer());
+        StopAllCoroutines();
         firing = false;
     }
 
@@ -195,7 +195,7 @@ public class ShooterAgent : Agent
     {
         BulletFire();
         firing = true;
-        //Debug.Log("now Firing");
+        // Debug.Log("now Firing");
         yield return new WaitForSeconds(coolTime);
         firing = false;
     }

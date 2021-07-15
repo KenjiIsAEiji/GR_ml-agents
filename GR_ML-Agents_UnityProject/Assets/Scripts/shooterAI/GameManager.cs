@@ -84,7 +84,7 @@ public class GameManager : MonoBehaviour
         // All agents end Episode
         agents[0].EndEpisode();
         agents[1].EndEpisode();
-        Debug.Log("end episode" + " from AgentID " + agentId);
+        // Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
     }
 }
