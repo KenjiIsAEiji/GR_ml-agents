@@ -77,6 +77,10 @@ public class ShooterAgent : Agent
                 StartCoroutine(FireTimer());
             }
         }
+
+        // stepReward
+        AddReward(-0.001f);
+
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -188,7 +192,7 @@ public class ShooterAgent : Agent
         gameManager.bullets.Add(bullet);
 
         // Bullet shooting Rewerd
-        AddReward(0.1f);
+        // AddReward(0.1f);
     }
 
     IEnumerator FireTimer()
