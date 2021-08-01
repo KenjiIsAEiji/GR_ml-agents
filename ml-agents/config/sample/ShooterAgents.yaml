@@ -14,9 +14,9 @@ behaviors:
     # hyperparameters_setting
     hyperparameters:
       # PPO_and_SAC_common_settings
-      batch_size: 512
+      batch_size: 128
       buffer_size: 10240
-      learning_rate: 0.0003
+      learning_rate: 0.00001
       learning_rate_schedule: constant
       
       # PPO_only_settings
@@ -28,8 +28,8 @@ behaviors:
     # neural_network_settings
     network_settings:
       normalize: false
-      hidden_units: 256
-      num_layers: 2
+      hidden_units: 512
+      num_layers: 3
       vis_encode_type: simple
 
     # reward_signals_settings
