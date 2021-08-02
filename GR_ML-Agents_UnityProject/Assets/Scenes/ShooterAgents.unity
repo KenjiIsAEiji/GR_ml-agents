@@ -720,9 +720,9 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 44ebab90315354c4f9f66794fae1de3f, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 514cc25335b98ea409ea10f7b3e28bda, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: ShooterAgents
   TeamId: 0
   m_UseChildSensors: 1
@@ -842,7 +842,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 44ebab90315354c4f9f66794fae1de3f, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 514cc25335b98ea409ea10f7b3e28bda, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: ShooterAgents
