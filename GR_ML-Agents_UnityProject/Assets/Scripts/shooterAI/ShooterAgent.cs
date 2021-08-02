@@ -35,11 +35,13 @@ public class ShooterAgent : Agent
     // 
     public override void CollectObservations(VectorSensor sensor)
     {
-        sensor.AddObservation(this.transform.position.x);
-        sensor.AddObservation(this.transform.position.z);
+        sensor.AddObservation(this.agentRb.velocity.x);
+        sensor.AddObservation(this.agentRb.velocity.z);
 
-        sensor.AddObservation(opponentTransform.position.x);
-        sensor.AddObservation(opponentTransform.position.z);
+        Vector3 relativePosition = opponentTransform.position - this.transform.position;
+
+        sensor.AddObservation(relativePosition.x);
+        sensor.AddObservation(relativePosition.z);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
