@@ -81,7 +81,7 @@ public class ShooterAgent : Agent
         }
 
         // stepReward
-        AddReward(-0.001f);
+        // AddReward(-0.001f);
 
     }
 
