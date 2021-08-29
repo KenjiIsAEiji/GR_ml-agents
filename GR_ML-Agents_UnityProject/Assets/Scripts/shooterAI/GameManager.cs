@@ -15,14 +15,34 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Vector2 spawnRange;
 
+    public int maxEnvironmentSteps = 10000;
+
+    private int resetTimer;
+
     // Start is called before the first frame update
     void Start()
     {
         AgentReset();
     }
+
+    void FixedUpdate()
+    {
+        resetTimer += 1;    // 現在のステップ数をカウント
+
+        // maxEnvironmentSteps以上になったらエピソードを中断
+        // maxEnvironmentStepsが0の場合は中断せず、エピソードを無制限に継続する
+        if(resetTimer >= maxEnvironmentSteps && maxEnvironmentSteps > 0){
+            agents[0].EpisodeInterrupted();
+            agents[1].EpisodeInterrupted();
+            AgentReset();
+        }
+    }
     
     public void AgentReset()
     {
+        // 現在のステップ数をリセット
+        resetTimer = 0;
+        
         // エージェントの初期化(位置(x,z)や向きをリセット)
         // サイドもランダムに変化させる(x軸反転)
         Vector3 pos0, pos1;
@@ -75,9 +95,9 @@ public class GameManager : MonoBehaviour
         // All agents add reward
         if(agentId == 0){
             agents[0].AddReward(-1.0f);
-            agents[1].AddReward(1.0f);
+            agents[1].AddReward(1 - resetTimer / maxEnvironmentSteps);
         }else{
-            agents[0].AddReward(1.0f);
+            agents[0].AddReward(1 - resetTimer / maxEnvironmentSteps);
             agents[1].AddReward(-1.0f);
         }
 

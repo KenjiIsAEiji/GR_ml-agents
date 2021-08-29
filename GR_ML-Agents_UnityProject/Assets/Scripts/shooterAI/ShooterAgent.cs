@@ -82,7 +82,7 @@ public class ShooterAgent : Agent
         }
 
         // stepReward
-        // AddReward(-0.001f);
+        AddReward(-0.001f);
 
     }
 
@@ -195,7 +195,7 @@ public class ShooterAgent : Agent
         gameManager.bullets.Add(bullet);
 
         // Bullet shooting Rewerd
-        // AddReward(0.1f);
+        AddReward(0.1f);
     }
 
     IEnumerator FireTimer()
