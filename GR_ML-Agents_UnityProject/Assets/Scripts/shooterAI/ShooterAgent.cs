@@ -33,17 +33,17 @@ public class ShooterAgent : Agent
     }
 
     // 
-    public override void CollectObservations(VectorSensor sensor)
-    {
-        sensor.AddObservation(this.transform.forward.x);
-        sensor.AddObservation(this.transform.forward.z);
+    // public override void CollectObservations(VectorSensor sensor)
+    // {
+    //     sensor.AddObservation(this.transform.forward.x);
+    //     sensor.AddObservation(this.transform.forward.z);
 
-        Vector3 relativePosition = opponentTransform.position - this.transform.position;
-        relativePosition = relativePosition.normalized;
+    //     Vector3 relativePosition = opponentTransform.position - this.transform.position;
+    //     relativePosition = relativePosition.normalized;
 
-        sensor.AddObservation(relativePosition.x);
-        sensor.AddObservation(relativePosition.z);
-    }
+    //     sensor.AddObservation(relativePosition.x);
+    //     sensor.AddObservation(relativePosition.z);
+    // }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
