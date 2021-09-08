@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     // public GameObject[] agents;
     public List<GameObject> bullets;
 
+    [Header("-- Environment settings --")]
+    [SerializeField] float spawnXOffset = 5f;
     [SerializeField] Vector2 spawnRange;
 
     public int maxEnvironmentSteps = 10000;
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
         // エージェントの初期化(位置(x,z)や向きをリセット)
         // サイドもランダムに変化させる(x軸反転)
         Vector3 pos0, pos1;
-        pos0 = pos1 = new Vector3(5.0f,0.5f,0);
+        pos0 = pos1 = new Vector3(spawnXOffset,0.5f,0);
 
         Vector2 randomOffset = new Vector2(
             Random.Range(-spawnRange.x,spawnRange.x),
@@ -106,5 +108,12 @@ public class GameManager : MonoBehaviour
         agents[1].EndEpisode();
         // Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+        Gizmos.DrawCube(new Vector3(spawnXOffset, 0.25f, 0), new Vector3(spawnRange.x * 2, 0.5f, spawnRange.y * 2));
+        Gizmos.DrawCube(new Vector3(-spawnXOffset, 0.25f, 0), new Vector3(spawnRange.x * 2, 0.5f, spawnRange.y * 2));
     }
 }
