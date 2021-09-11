@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public int maxEnvironmentSteps = 10000;
 
     private int resetTimer;
+    private float timeBonus = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -96,10 +97,10 @@ public class GameManager : MonoBehaviour
     {
         // All agents add reward
         if(agentId == 0){
+            agents[1].AddReward(2.0f - timeBonus * (resetTimer / maxEnvironmentSteps));
             agents[0].AddReward(-1.0f);
-            agents[1].AddReward(1 - resetTimer / maxEnvironmentSteps);
         }else{
-            agents[0].AddReward(1 - resetTimer / maxEnvironmentSteps);
+            agents[0].AddReward(2.0f - timeBonus * (resetTimer / maxEnvironmentSteps));
             agents[1].AddReward(-1.0f);
         }
 

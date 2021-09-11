@@ -22,9 +22,9 @@ public class ShooterAgent : Agent
     [SerializeField] Transform muzzleTransform;
     private bool firing = false;
 
-    [Header("-- Agents Settings --")]
+    [Header("-- Agents observation settings --")]
     public int agentId;
-    public Transform opponentTransform;
+    public Transform stageTransform;
 
     // Start is called before the first frame update
     public override void Initialize()
@@ -32,46 +32,37 @@ public class ShooterAgent : Agent
         this.agentRb = GetComponent<Rigidbody>();
     }
 
-    // 
-    // public override void CollectObservations(VectorSensor sensor)
-    // {
-    //     sensor.AddObservation(this.transform.forward.x);
-    //     sensor.AddObservation(this.transform.forward.z);
-
-    //     Vector3 relativePosition = opponentTransform.position - this.transform.position;
-    //     relativePosition = relativePosition.normalized;
-
-    //     sensor.AddObservation(relativePosition.x);
-    //     sensor.AddObservation(relativePosition.z);
-    // }
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        // ステージ上のエージェント自身の位置
+        sensor.AddObservation(stageTransform.InverseTransformPoint(this.transform.position));
+        // 自身の速度とエージェント自身の正面および右方向それぞれの内積
+        sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.forward));
+        sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.right));
+    }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
         // actions organizing ---------------------------------
-        int verticalAction = (int)actions.DiscreteActions[0];
-        int horizonAction = (int)actions.DiscreteActions[1];
-        int rotateAction = (int)actions.DiscreteActions[2];
-        int fire = (int)actions.DiscreteActions[3];
+        var continuousAction = actions.ContinuousActions;
+        var discreteAction = actions.DiscreteActions;
+
+        float inputVertical = continuousAction[0];
+        float inputHorizontal = continuousAction[1];
+        float inputRotate = continuousAction[2];
+
+        int fire = (int)discreteAction[0];
         
         // movement ---------------------------------
-        Vector3 vel = Vector3.zero;
-
-        if(verticalAction == 1) vel.z += 1.0f;
-        if(verticalAction == 2) vel.z += -1.0f;
-
-        if(horizonAction == 1) vel.x += -1.0f;
-        if(horizonAction == 2) vel.x += 1.0f;
+        Vector3 vel = new Vector3(inputHorizontal, 0, inputVertical);
 
         vel = vel * moveSpeed;
         // Debug.Log(vel);
         agentRb.AddRelativeForce(vel * agentRb.mass * agentRb.drag / (1f - agentRb.drag * Time.fixedDeltaTime));
 
         // rotate ---------------------------------
-        Vector3 rotatingVec = Vector3.zero;
-        if(rotateAction == 1) rotatingVec += Vector3.down;
-        if(rotateAction == 2) rotatingVec += Vector3.up;
         // Debug.Log(rotatingVec);
-        this.transform.Rotate(rotatingVec * rotateSpeed * Time.deltaTime);
+        this.transform.Rotate(Vector3.down * inputRotate * rotateSpeed * Time.deltaTime);
 
         // bullet firing ---------------------------------
         if(fire == 1){
@@ -83,51 +74,39 @@ public class ShooterAgent : Agent
 
         // stepReward
         AddReward(-0.001f);
-
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
+        var continuousActions = actionsOut.ContinuousActions;
         var discreteActions = actionsOut.DiscreteActions;
-        
+
         // vertical
-        if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S)){
-            discreteActions[0] = 0;
-        }else if(Input.GetKey(KeyCode.W)){
-            discreteActions[0] = 1;
-        }else if(Input.GetKey(KeyCode.S)){
-            discreteActions[0] = 2;
-        }else{
-            discreteActions[0] = 0;
-        }
+        float input = 0;
+        if(Input.GetKey(KeyCode.W)) input += 1.0f;
+        if(Input.GetKey(KeyCode.S)) input += -1.0f;
+
+        continuousActions[0] = input;
 
         // horizon
-        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D)){
-            discreteActions[1] = 0;
-        }else if(Input.GetKey(KeyCode.A)){
-            discreteActions[1] = 1;
-        }else if(Input.GetKey(KeyCode.D)){
-            discreteActions[1] = 2;
-        }else{
-            discreteActions[1] = 0;
-        }
+        input = 0;
+        if(Input.GetKey(KeyCode.A)) input += -1.0f;
+        if(Input.GetKey(KeyCode.D)) input += 1.0f;
+
+        continuousActions[1] = input;
 
         // rotate
-        if(Input.GetKey(KeyCode.J) && Input.GetKey(KeyCode.L)){
-            discreteActions[2] = 0;
-        }else if(Input.GetKey(KeyCode.J)){
-            discreteActions[2] = 1;
-        }else if(Input.GetKey(KeyCode.L)){
-            discreteActions[2] = 2;
-        }else{
-            discreteActions[2] = 0;
-        }
+        input = 0;
+        if(Input.GetKey(KeyCode.J)) input += 1.0f;
+        if(Input.GetKey(KeyCode.L)) input += -1.0f;
+        
+        continuousActions[2] = input;
 
         // firing
         if(Input.GetKey(KeyCode.Space)){
-            discreteActions[3] = 1;
+            discreteActions[0] = 1;
         }else{
-            discreteActions[3] = 0;
+            discreteActions[0] = 0;
         }
     }
 
@@ -195,7 +174,7 @@ public class ShooterAgent : Agent
         gameManager.bullets.Add(bullet);
 
         // Bullet shooting Rewerd
-        AddReward(0.1f);
+        // AddReward(0.1f);
     }
 
     IEnumerator FireTimer()
