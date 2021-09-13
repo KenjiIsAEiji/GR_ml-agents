@@ -1555,7 +1555,7 @@ MonoBehaviour:
   bullets: []
   spawnXOffset: 20
   spawnRange: {x: 3, y: 10}
-  maxEnvironmentSteps: 50000
+  maxEnvironmentSteps: 70000
 --- !u!4 &1344997824
 Transform:
   m_ObjectHideFlags: 0
