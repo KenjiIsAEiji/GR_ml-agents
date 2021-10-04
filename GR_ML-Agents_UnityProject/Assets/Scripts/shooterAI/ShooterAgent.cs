@@ -171,6 +171,7 @@ public class ShooterAgent : Agent
 
         bullet.GetComponent<Rigidbody>().AddForce(muzzleTransform.forward * firePower,ForceMode.Impulse);
         bullet.GetComponent<Bullet>().gameManagerRef = gameManager;
+        bullet.GetComponent<Bullet>().shootOrigin = this.transform;
         gameManager.bullets.Add(bullet);
 
         // Bullet shooting Rewerd
