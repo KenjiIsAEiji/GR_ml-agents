@@ -25,6 +25,7 @@ public class ShooterAgent : Agent
     [Header("-- Agent HP settings --")]
     [SerializeField] float MaxHP = 25f;
     [SerializeField] private float agentHP;
+    [SerializeField] HealthBar healthBar;
 
     [Header("-- Agent observation settings --")]
     public int agentId;
@@ -129,6 +130,7 @@ public class ShooterAgent : Agent
                 this.gameManager.EndEpisode(this.agentId);
             }
 
+            healthBar.setHealth(agentHP);
             bullet.RemoveBullet();
         }
     }
@@ -143,6 +145,7 @@ public class ShooterAgent : Agent
     void HpReset()
     {
         agentHP = MaxHP;
+        healthBar.setMaxHealth(MaxHP);
     }
 
     void BulletFire()
