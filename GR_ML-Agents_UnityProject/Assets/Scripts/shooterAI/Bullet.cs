@@ -5,11 +5,11 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public GameManager gameManagerRef;
-
-    [SerializeField] float lifeTime = 3.0f;
-
     public Transform shootOrigin;
     [SerializeField] float shootingRange = 2.0f;
+
+    public float bulletDamage = 6f;
+    [SerializeField] float lifeTime = 3.0f;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    private void RemoveBullet()
+    public void RemoveBullet()
     {
         gameManagerRef.bullets.Remove(this.gameObject);
         Destroy(this.gameObject);

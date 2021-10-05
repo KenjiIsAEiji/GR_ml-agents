@@ -127,3 +127,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManagerRef: {fileID: 0}
   lifeTime: 3
+  shootOrigin: {fileID: 0}
+  shootingRange: 15

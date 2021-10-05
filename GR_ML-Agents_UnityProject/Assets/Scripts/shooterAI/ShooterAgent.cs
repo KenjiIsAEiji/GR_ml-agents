@@ -22,7 +22,11 @@ public class ShooterAgent : Agent
     [SerializeField] Transform muzzleTransform;
     private bool firing = false;
 
-    [Header("-- Agents observation settings --")]
+    [Header("-- Agent HP settings --")]
+    [SerializeField] float MaxHP = 25f;
+    [SerializeField] private float agentHP;
+
+    [Header("-- Agent observation settings --")]
     public int agentId;
     public Transform stageTransform;
 
@@ -30,13 +34,14 @@ public class ShooterAgent : Agent
     public override void Initialize()
     {
         this.agentRb = GetComponent<Rigidbody>();
+        HpReset();
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
         // ステージ上のエージェント自身の位置
         sensor.AddObservation(stageTransform.InverseTransformPoint(this.transform.position));
-        // 自身の速度とエージェント自身の正面および右方向それぞれの内積
+        // 自身の速度とエージェント自身の正面および右方向との内積
         sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.forward));
         sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.right));
     }
@@ -110,6 +115,62 @@ public class ShooterAgent : Agent
         }
     }
 
+    void OnCollisionEnter(Collision collisionInfo)
+    {
+        GameObject hitObject = collisionInfo.gameObject;
+
+        if(hitObject.CompareTag("bullet")){
+            Bullet bullet = hitObject.GetComponent<Bullet>();
+            agentHP -= bullet.bulletDamage;
+            
+            //
+            if(agentHP <= 0){
+                agentHP = 0;
+                this.gameManager.EndEpisode(this.agentId);
+            }
+
+            bullet.RemoveBullet();
+        }
+    }
+
+    public void AgentRestart()
+    {
+        StopAllCoroutines();
+        firing = false;
+        HpReset();
+    }
+
+    void HpReset()
+    {
+        agentHP = MaxHP;
+    }
+
+    void BulletFire()
+    {
+        GameObject bullet = Instantiate(
+            bulletPrefab,
+            muzzleTransform.position,
+            Quaternion.identity
+        );
+
+        bullet.GetComponent<Rigidbody>().AddForce(muzzleTransform.forward * firePower,ForceMode.Impulse);
+        bullet.GetComponent<Bullet>().gameManagerRef = gameManager;
+        bullet.GetComponent<Bullet>().shootOrigin = this.transform;
+        gameManager.bullets.Add(bullet);
+
+        // Bullet shooting Rewerd
+        // AddReward(0.1f);
+    }
+
+    IEnumerator FireTimer()
+    {
+        BulletFire();
+        firing = true;
+        // Debug.Log("now Firing");
+        yield return new WaitForSeconds(coolTime);
+        firing = false;
+    }
+
     // // Update is called once per frame
     // void Update()
     // {
@@ -148,42 +209,4 @@ public class ShooterAgent : Agent
 
     //     agentRb.AddRelativeForce(vel * agentRb.mass * agentRb.drag / (1f - agentRb.drag * Time.fixedDeltaTime));
     // }
-
-    void OnCollisionEnter(Collision collisionInfo)
-    {
-        if(collisionInfo.gameObject.CompareTag("bullet")){
-            this.gameManager.EndEpisode(this.agentId);
-        }
-    }
-
-    public void AgentRestart(){
-        StopAllCoroutines();
-        firing = false;
-    }
-
-    void BulletFire()
-    {
-        GameObject bullet = Instantiate(
-            bulletPrefab,
-            muzzleTransform.position,
-            Quaternion.identity
-        );
-
-        bullet.GetComponent<Rigidbody>().AddForce(muzzleTransform.forward * firePower,ForceMode.Impulse);
-        bullet.GetComponent<Bullet>().gameManagerRef = gameManager;
-        bullet.GetComponent<Bullet>().shootOrigin = this.transform;
-        gameManager.bullets.Add(bullet);
-
-        // Bullet shooting Rewerd
-        // AddReward(0.1f);
-    }
-
-    IEnumerator FireTimer()
-    {
-        BulletFire();
-        firing = true;
-        // Debug.Log("now Firing");
-        yield return new WaitForSeconds(coolTime);
-        firing = false;
-    }
 }

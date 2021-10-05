@@ -205,7 +205,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!114 &1183940
 MonoBehaviour:
@@ -1214,7 +1214,7 @@ Transform:
   - {fileID: 575147234}
   - {fileID: 774954592}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1022258498
 MonoBehaviour:
@@ -1239,6 +1239,8 @@ MonoBehaviour:
   firePower: 150
   coolTime: 0.5
   muzzleTransform: {fileID: 1680729654}
+  MaxHP: 25
+  agentHP: 0
   agentId: 0
   stageTransform: {fileID: 1899295469}
 --- !u!54 &1022258499
@@ -1295,7 +1297,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: 79c9f0dd2cc6f7044b2af5d05742e086, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: ShooterAgents
   TeamId: 0
   m_UseChildSensors: 1
@@ -1547,7 +1549,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1632617291
 GameObject:
@@ -1968,6 +1970,8 @@ MonoBehaviour:
   firePower: 150
   coolTime: 0.5
   muzzleTransform: {fileID: 934772937}
+  MaxHP: 25
+  agentHP: 0
   agentId: 1
   stageTransform: {fileID: 1899295469}
 --- !u!4 &1891785106
@@ -1988,7 +1992,7 @@ Transform:
   - {fileID: 2071667806}
   - {fileID: 1269080866}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!114 &1891785107
 MonoBehaviour:
@@ -2028,7 +2032,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: 79c9f0dd2cc6f7044b2af5d05742e086, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: ShooterAgents
   TeamId: 0
   m_UseChildSensors: 1
@@ -2151,7 +2155,7 @@ Transform:
   - {fileID: 1857712189}
   - {fileID: 657731845}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1920023551
 GameObject:
@@ -2420,7 +2424,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2071667805
 GameObject:
