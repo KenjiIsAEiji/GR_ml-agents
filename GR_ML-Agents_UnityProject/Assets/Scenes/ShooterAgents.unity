@@ -1762,7 +1762,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: 79c9f0dd2cc6f7044b2af5d05742e086, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: ShooterAgents
   TeamId: 0
   m_UseChildSensors: 1
@@ -2896,7 +2896,7 @@ MonoBehaviour:
     hasUpgradedBrainParametersWithActionSpec: 1
   m_Model: {fileID: 5022602860645237092, guid: 79c9f0dd2cc6f7044b2af5d05742e086, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
+  m_BehaviorType: 0
   m_BehaviorName: ShooterAgents
   TeamId: 0
   m_UseChildSensors: 1
