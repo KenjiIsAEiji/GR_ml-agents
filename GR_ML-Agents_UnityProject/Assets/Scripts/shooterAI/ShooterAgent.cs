@@ -45,6 +45,7 @@ public class ShooterAgent : Agent
         // 自身の速度とエージェント自身の正面および右方向との内積
         sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.forward));
         sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.right));
+        sensor.AddObservation(agentHP);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
