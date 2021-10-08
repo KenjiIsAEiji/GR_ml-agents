@@ -38,6 +38,10 @@ public class GameManager : MonoBehaviour
             agents[0].EpisodeInterrupted();
             agents[1].EpisodeInterrupted();
             AgentReset();
+        }else{
+            // step reward
+            agents[0].AddReward(-(1/maxEnvironmentSteps));
+            agents[1].AddReward(-(1/maxEnvironmentSteps));
         }
     }
     
@@ -92,7 +96,18 @@ public class GameManager : MonoBehaviour
         bullets.Clear();
     }
 
-    // 得点処理(ヒットした側のエージェントから呼ばれる)
+    // ヒット処理(弾丸がヒットされたエージェントから呼ばれる)
+    public void BulletHit(int agentId)
+    {
+        // 弾丸をヒットさせたエージェントに中程度の報酬
+        if(agentId == 0){
+            agents[1].AddReward(0.1f);
+        }else{
+            agents[0].AddReward(0.1f);
+        }
+    }
+
+    // 決着処理(HPが0となった側のエージェントから呼ばれる)
     public void EndEpisode(int agentId)
     {
         // All agents add reward

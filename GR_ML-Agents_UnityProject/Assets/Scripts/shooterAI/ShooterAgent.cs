@@ -80,7 +80,7 @@ public class ShooterAgent : Agent
         }
 
         // stepReward
-        AddReward(-0.001f);
+        // AddReward(-0.001f);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -129,6 +129,8 @@ public class ShooterAgent : Agent
             if(agentHP <= 0){
                 agentHP = 0;
                 this.gameManager.EndEpisode(this.agentId);
+            }else{
+                this.gameManager.BulletHit(this.agentId);
             }
 
             healthBar.setHealth(agentHP);
