@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         Vector3 pos0, pos1;
         pos0 = pos1 = new Vector3(spawnXOffset,0.5f,0);
 
-        pos1.x = -pos1.x;
+        pos0.x = -pos0.x;
 
         // Vector2 randomOffset = new Vector2(
         //     Random.Range(-spawnRange.x,spawnRange.x),
