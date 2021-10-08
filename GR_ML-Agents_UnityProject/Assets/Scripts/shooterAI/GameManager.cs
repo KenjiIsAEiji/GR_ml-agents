@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public int maxEnvironmentSteps = 10000;
 
-    private int resetTimer;
+    [SerializeField] private int resetTimer;
     private float timeBonus = 1.0f;
 
     // Start is called before the first frame update
@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
         if(resetTimer >= maxEnvironmentSteps && maxEnvironmentSteps > 0){
             agents[0].EpisodeInterrupted();
             agents[1].EpisodeInterrupted();
+            Debug.Log("Episode Interrupted");
             AgentReset();
         }else{
             // step reward
@@ -55,25 +56,27 @@ public class GameManager : MonoBehaviour
         Vector3 pos0, pos1;
         pos0 = pos1 = new Vector3(spawnXOffset,0.5f,0);
 
-        Vector2 randomOffset = new Vector2(
-            Random.Range(-spawnRange.x,spawnRange.x),
-            Random.Range(-spawnRange.y,spawnRange.y)
-        );
-        pos0.x += randomOffset.x;
-        pos0.z += randomOffset.y;
+        pos1.x = -pos1.x;
 
-        randomOffset = new Vector2(
-            Random.Range(-spawnRange.x,spawnRange.x),
-            Random.Range(-spawnRange.y,spawnRange.y)
-        );
-        pos1.x += randomOffset.x;
-        pos1.z += randomOffset.y;
+        // Vector2 randomOffset = new Vector2(
+        //     Random.Range(-spawnRange.x,spawnRange.x),
+        //     Random.Range(-spawnRange.y,spawnRange.y)
+        // );
+        // pos0.x += randomOffset.x;
+        // pos0.z += randomOffset.y;
+
+        // randomOffset = new Vector2(
+        //     Random.Range(-spawnRange.x,spawnRange.x),
+        //     Random.Range(-spawnRange.y,spawnRange.y)
+        // );
+        // pos1.x += randomOffset.x;
+        // pos1.z += randomOffset.y;
         
-        if(Random.value < 0.5f){
-            pos0.x = -pos0.x;
-        }else{
-            pos1.x = -pos1.x;
-        }
+        // if(Random.value < 0.5f){
+        //     pos0.x = -pos0.x;
+        // }else{
+        //     pos1.x = -pos1.x;
+        // }
 
         // agents[0].transform.localPosition = pos0;
         // agents[1].transform.localPosition = pos1;
