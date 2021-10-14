@@ -104,9 +104,11 @@ public class GameManager : MonoBehaviour
     {
         // 弾丸をヒットさせたエージェントに中程度の報酬
         if(agentId == 0){
+            agents[0].AddReward(-0.1f);
             agents[1].AddReward(0.1f);
         }else{
             agents[0].AddReward(0.1f);
+            agents[1].AddReward(-0.1f);
         }
     }
 
