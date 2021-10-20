@@ -58,19 +58,19 @@ public class GameManager : MonoBehaviour
 
         pos0.x = -pos0.x;
 
-        // Vector2 randomOffset = new Vector2(
-        //     Random.Range(-spawnRange.x,spawnRange.x),
-        //     Random.Range(-spawnRange.y,spawnRange.y)
-        // );
-        // pos0.x += randomOffset.x;
-        // pos0.z += randomOffset.y;
+        Vector2 randomOffset = new Vector2(
+            Random.Range(-spawnRange.x,spawnRange.x),
+            Random.Range(-spawnRange.y,spawnRange.y)
+        );
+        pos0.x += randomOffset.x;
+        pos0.z += randomOffset.y;
 
-        // randomOffset = new Vector2(
-        //     Random.Range(-spawnRange.x,spawnRange.x),
-        //     Random.Range(-spawnRange.y,spawnRange.y)
-        // );
-        // pos1.x += randomOffset.x;
-        // pos1.z += randomOffset.y;
+        randomOffset = new Vector2(
+            Random.Range(-spawnRange.x,spawnRange.x),
+            Random.Range(-spawnRange.y,spawnRange.y)
+        );
+        pos1.x += randomOffset.x;
+        pos1.z += randomOffset.y;
         
         // if(Random.value < 0.5f){
         //     pos0.x = -pos0.x;
@@ -102,13 +102,13 @@ public class GameManager : MonoBehaviour
     // ヒット処理(弾丸がヒットされたエージェントから呼ばれる)
     public void BulletHit(int agentId)
     {
-        // 弾丸をヒットさせたエージェントに中程度の報酬
+        // ダメージを与えたエージェントに中程度の報酬
         if(agentId == 0){
-            agents[0].AddReward(-0.1f);
+            // agents[0].AddReward(-0.1f);
             agents[1].AddReward(0.1f);
         }else{
             agents[0].AddReward(0.1f);
-            agents[1].AddReward(-0.1f);
+            // agents[1].AddReward(-0.1f);
         }
     }
 
