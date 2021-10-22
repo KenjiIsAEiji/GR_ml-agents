@@ -8,21 +8,42 @@ public class Bullet : MonoBehaviour
     public Transform shootOrigin;
     [SerializeField] float shootingRange = 2.0f;
 
-    public float bulletDamage = 6f;
+    public float bulletBaseDamage = 6f;
+    [SerializeField] private AnimationCurve damageCurve;
+
     [SerializeField] float lifeTime = 3.0f;
 
     void Start()
     {
+        // start remove timer
         StartCoroutine(RemoveTimer());
     }
 
     void Update()
     {
-        Vector3 relative = this.transform.position - shootOrigin.position;
-        
-        // 
-        if(relative.sqrMagnitude > (shootingRange * shootingRange)){
+        // shootingRange comparison
+        if(GetDistanceRatio() > 1.0f){
             RemoveBullet();
+        }
+    }
+
+    private float GetDistanceRatio()
+    {
+        Vector3 relative = this.transform.position - shootOrigin.position;
+        float ratio = relative.sqrMagnitude / (shootingRange * shootingRange);
+        
+        //Debug.Log("DistanceRatio: " + ratio);
+        return ratio;
+    }
+
+    public float GetDamage
+    {
+        get
+        {
+            float damage = bulletBaseDamage * damageCurve.Evaluate(Mathf.Clamp01(GetDistanceRatio()));
+            // Debug.Log("Damage! : " + damage);
+
+            return damage;
         }
     }
 

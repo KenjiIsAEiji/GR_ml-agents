@@ -123,14 +123,15 @@ public class ShooterAgent : Agent
 
         if(hitObject.CompareTag("bullet")){
             Bullet bullet = hitObject.GetComponent<Bullet>();
-            agentHP -= bullet.bulletDamage;
+            float hitDamage = bullet.GetDamage;
+            agentHP -= hitDamage;
             
             //
             if(agentHP <= 0){
                 agentHP = 0;
                 this.gameManager.EndEpisode(this.agentId);
             }else{
-                this.gameManager.BulletHit(this.agentId);
+                this.gameManager.BulletHit(this.agentId, hitDamage / bullet.bulletBaseDamage);
             }
 
             healthBar.setHealth(agentHP);
