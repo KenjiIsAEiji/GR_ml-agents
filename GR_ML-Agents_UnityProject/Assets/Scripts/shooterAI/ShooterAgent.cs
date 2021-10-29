@@ -30,12 +30,14 @@ public class ShooterAgent : Agent
     [Header("-- Agent observation settings --")]
     public int agentId;
     public Transform stageTransform;
+    private Vector3 defaultDirection;
 
     // Start is called before the first frame update
     public override void Initialize()
     {
         this.agentRb = GetComponent<Rigidbody>();
         HpReset();
+        defaultDirection = this.transform.forward;
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -45,6 +47,11 @@ public class ShooterAgent : Agent
         // 自身の速度とエージェント自身の正面および右方向との内積
         sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.forward));
         sensor.AddObservation(Vector3.Dot(agentRb.velocity,this.transform.right));
+        
+        // 自身の向き
+        sensor.AddObservation(Vector3.SignedAngle(this.transform.forward,defaultDirection,Vector3.up));
+        
+        // 自身のHP
         sensor.AddObservation(agentHP);
     }
 
