@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     // public GameObject[] agents;
     public List<GameObject> bullets;
 
+    public int[] agentScore;
+
     [Header("-- Environment settings --")]
     [SerializeField] float spawnXOffset = 5f;
     [SerializeField] Vector2 spawnRange;
@@ -25,6 +27,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        AllScoreClear();
         AgentReset();
     }
 
@@ -99,6 +102,16 @@ public class GameManager : MonoBehaviour
         bullets.Clear();
     }
 
+    private void AllScoreClear()
+    {
+        agentScore = new int[agents.Length];
+        for (int i = 0; i < agentScore.Length; i++)
+        {
+            agentScore[i] = 0;
+        }
+        Debug.Log("All agent Score Refreshed!");
+    }
+
     // ヒット処理(弾丸がヒットされたエージェントから呼ばれる)
     // damageRatioは与えたダメージ量に対応した報酬の倍率(0～1)
     public void BulletHit(int agentId, float damageRatio)
@@ -113,14 +126,36 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // 決着処理(HPが0となった側のエージェントから呼ばれる)
+    // 得点処理(HPが0となった側のエージェントから呼ばれる)
+    public void AgentDefeated(int agentId)
+    {
+        if(agentId == 0){
+            agentScore[1] = agentScore[1] + 1;
+        }else{
+            agentScore[0] = agentScore[0] + 1;
+        }
+        
+        Debug.Log("Agent" + agentId + " Defeated!");
+
+        for(int i = 0; i < agentScore.Length; i++){
+            // スコアが先に5以上になったらエピソード完了
+            if(agentScore[i] >= 5){
+                EndEpisode(i);
+            }
+        }
+        AgentReset();
+    }
+
+    // 決着処理(得点処理で先に5点先取したら呼ばれる)
     public void EndEpisode(int agentId)
     {
         // All agents add reward
         if(agentId == 0){
+            Debug.Log("agent 1 Win!!");
             agents[1].AddReward(2.0f - timeBonus * (resetTimer / maxEnvironmentSteps));
             agents[0].AddReward(-1.0f);
         }else{
+            Debug.Log("agent 0 Win!!");
             agents[0].AddReward(2.0f - timeBonus * (resetTimer / maxEnvironmentSteps));
             agents[1].AddReward(-1.0f);
         }
@@ -130,6 +165,7 @@ public class GameManager : MonoBehaviour
         agents[1].EndEpisode();
         // Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
+        AllScoreClear();
     }
 
     void OnDrawGizmos()

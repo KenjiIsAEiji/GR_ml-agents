@@ -136,7 +136,8 @@ public class ShooterAgent : Agent
             //
             if(agentHP <= 0){
                 agentHP = 0;
-                this.gameManager.EndEpisode(this.agentId);
+                // this.gameManager.EndEpisode(this.agentId);
+                this.gameManager.AgentDefeated(this.agentId);
             }else{
                 this.gameManager.BulletHit(this.agentId, hitDamage / bullet.bulletBaseDamage);
             }
