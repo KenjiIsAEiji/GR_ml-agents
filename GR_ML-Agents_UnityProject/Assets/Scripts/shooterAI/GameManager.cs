@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
+using UnityEngine.UI;
 
 /// <summary>
 /// ゲーム管理クラス
@@ -23,6 +24,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private int resetTimer;
     private float timeBonus = 1.0f;
+
+    [Header("-- HUD Settings --")]
+    [SerializeField] Text[] ScoreTexts;
 
     // Start is called before the first frame update
     void Start()
@@ -109,6 +113,8 @@ public class GameManager : MonoBehaviour
         {
             agentScore[i] = 0;
         }
+
+        ScoreToUI();
         Debug.Log("All agent Score Refreshed!");
     }
 
@@ -143,6 +149,7 @@ public class GameManager : MonoBehaviour
                 EndEpisode(i);
             }
         }
+        ScoreToUI();
         AgentReset();
     }
 
@@ -166,6 +173,13 @@ public class GameManager : MonoBehaviour
         // Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
         AllScoreClear();
+    }
+
+    public void ScoreToUI()
+    {
+        for(int i = 0; i < agentScore.Length; i++){
+            ScoreTexts[i].text = agentScore[i].ToString();
+        }
     }
 
     void OnDrawGizmos()
