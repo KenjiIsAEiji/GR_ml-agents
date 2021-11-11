@@ -23,7 +23,11 @@ public class GameManager : MonoBehaviour
     public int maxEnvironmentSteps = 10000;
 
     [SerializeField] private int resetTimer;
+    
+    // -- reward settings --
     private float timeBonus = 1.0f;
+    private float scoreReward = 0.1f;
+    private float hitBaseReward = 0.01f;
 
     [Header("-- HUD Settings --")]
     [SerializeField] Text[] ScoreTexts;
@@ -125,9 +129,9 @@ public class GameManager : MonoBehaviour
         // ダメージを与えたエージェントに中程度の報酬
         if(agentId == 0){
             // agents[0].AddReward(-0.1f);
-            agents[1].AddReward(0.1f * damageRatio);
+            agents[1].AddReward(hitBaseReward * damageRatio);
         }else{
-            agents[0].AddReward(0.1f * damageRatio);
+            agents[0].AddReward(hitBaseReward * damageRatio);
             // agents[1].AddReward(-0.1f);
         }
     }
@@ -137,8 +141,11 @@ public class GameManager : MonoBehaviour
     {
         if(agentId == 0){
             agentScore[1] = agentScore[1] + 1;
+            agents[1].AddReward(scoreReward);
+
         }else{
             agentScore[0] = agentScore[0] + 1;
+            agents[0].AddReward(scoreReward);
         }
         
         Debug.Log("Agent" + agentId + " Defeated!");
