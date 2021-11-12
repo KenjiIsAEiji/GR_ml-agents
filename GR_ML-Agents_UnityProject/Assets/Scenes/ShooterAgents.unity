@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &1183937
 AudioListener:
   m_ObjectHideFlags: 0
@@ -436,8 +436,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000015259, y: -25.035904}
-  m_SizeDelta: {x: 587.4274, y: 50.076904}
+  m_AnchoredPosition: {x: 0, y: -25.038452}
+  m_SizeDelta: {x: 587.4275, y: 50.076904}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &80721779
 MonoBehaviour:
@@ -1622,7 +1622,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef8f75ef1c7b354fb541705ce4fdeec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1183939}
+  cam: {fileID: 1609818587}
 --- !u!114 &827430336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2474,7 +2474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ef8f75ef1c7b354fb541705ce4fdeec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 1183939}
+  cam: {fileID: 1609818587}
 --- !u!114 &1193234182
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3014,7 +3014,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1609818584
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3106,7 +3106,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1609818583}
   m_LocalRotation: {x: 0.4999996, y: -0, z: -0, w: 0.8660257}
-  m_LocalPosition: {x: 0, y: 16.47, z: -13.71}
+  m_LocalPosition: {x: 0, y: 28.8, z: -12.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
