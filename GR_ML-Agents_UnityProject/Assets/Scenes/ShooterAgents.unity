@@ -2888,7 +2888,7 @@ MonoBehaviour:
   agentScore: 
   spawnXOffset: 20
   spawnRange: {x: 3, y: 10}
-  maxEnvironmentSteps: 10000
+  maxEnvironmentSteps: 12000
   resetTimer: 0
   ScoreTexts:
   - {fileID: 1170070176}
