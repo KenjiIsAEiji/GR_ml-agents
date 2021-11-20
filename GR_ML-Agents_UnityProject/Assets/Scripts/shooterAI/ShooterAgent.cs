@@ -53,6 +53,12 @@ public class ShooterAgent : Agent
         
         // 自身のHP
         sensor.AddObservation(agentHP);
+
+        // 自分が獲得しているスコア
+        sensor.AddObservation(gameManager.agentScore[this.agentId]);
+
+        // 相手が獲得しているスコア
+        sensor.AddObservation(gameManager.agentScore[1 - this.agentId]);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
