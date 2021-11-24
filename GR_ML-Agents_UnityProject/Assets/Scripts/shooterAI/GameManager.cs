@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
             agents[0].EpisodeInterrupted();
             agents[1].EpisodeInterrupted();
             Debug.Log("Episode Interrupted");
+            GameAllClear();
             AgentReset();
         }else{
             // step reward

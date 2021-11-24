@@ -2888,7 +2888,7 @@ MonoBehaviour:
   agentScore: 
   spawnXOffset: 20
   spawnRange: {x: 3, y: 10}
-  maxEnvironmentSteps: 12000
+  maxEnvironmentSteps: 10000
   resetTimer: 0
   ScoreTexts:
   - {fileID: 1170070176}
@@ -3747,7 +3747,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 9cc430663def29d45bb2ac8b12116091, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: ShooterAgents
