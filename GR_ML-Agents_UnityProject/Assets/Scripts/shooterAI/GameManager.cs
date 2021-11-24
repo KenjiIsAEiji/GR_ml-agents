@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AllScoreClear();
+        GameAllClear();
         AgentReset();
     }
 
@@ -59,9 +59,6 @@ public class GameManager : MonoBehaviour
     
     public void AgentReset()
     {
-        // 現在のステップ数をリセット
-        resetTimer = 0;
-        
         // エージェントの初期化(位置(x,z)や向きをリセット)
         // サイドもランダムに変化させる(x軸反転)
         Vector3 pos0, pos1;
@@ -110,7 +107,7 @@ public class GameManager : MonoBehaviour
         bullets.Clear();
     }
 
-    private void AllScoreClear()
+    private void GameAllClear()
     {
         agentScore = new int[agents.Length];
         for (int i = 0; i < agentScore.Length; i++)
@@ -120,6 +117,9 @@ public class GameManager : MonoBehaviour
 
         ScoreToUI();
         Debug.Log("All agent Score Refreshed!");
+
+        // 現在のステップ数をリセット
+        resetTimer = 0;
     }
 
     // ヒット処理(弾丸がヒットされたエージェントから呼ばれる)
@@ -179,7 +179,7 @@ public class GameManager : MonoBehaviour
         agents[1].EndEpisode();
         // Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
-        AllScoreClear();
+        GameAllClear();
     }
 
     public void ScoreToUI()
