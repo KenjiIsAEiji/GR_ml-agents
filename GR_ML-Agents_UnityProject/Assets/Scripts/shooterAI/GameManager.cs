@@ -110,11 +110,12 @@ public class GameManager : MonoBehaviour
 
     private void GameAllClear()
     {
+        EnvironmentParameters envParameter = Academy.Instance.EnvironmentParameters;
+        
         agentScore = new int[agents.Length];
-        for (int i = 0; i < agentScore.Length; i++)
-        {
-            agentScore[i] = 0;
-        }
+        
+        agentScore[0] = Mathf.RoundToInt(envParameter.GetWithDefault("agent_A", 0));
+        agentScore[1] = Mathf.RoundToInt(envParameter.GetWithDefault("agent_B", 0));
 
         ScoreToUI();
         Debug.Log("All agent Score Refreshed!");
