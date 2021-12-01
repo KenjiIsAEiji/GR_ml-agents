@@ -114,6 +114,7 @@ public class GameManager : MonoBehaviour
         
         agentScore = new int[agents.Length];
         
+        // 環境パラメータからランダムな値(float)を取得し、スコア(int)に割り当て
         agentScore[0] = Mathf.RoundToInt(envParameter.GetWithDefault("agent_A", 0));
         agentScore[1] = Mathf.RoundToInt(envParameter.GetWithDefault("agent_B", 0));
 
