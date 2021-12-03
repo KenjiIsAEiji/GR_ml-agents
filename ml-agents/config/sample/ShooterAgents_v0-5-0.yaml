@@ -48,14 +48,14 @@ behaviors:
       initial_elo: 1200.0
   
 # environment_parameter_randomization_settings
-environment_parameters:
-  agent_A:
-    sampler_type: uniform
-    sampler_parameters:
-      min_value: 0
-      max_value: 4
-  agent_B:
-    sampler_type: uniform
-    sampler_parameters:
-      min_value: 0
-      max_value: 4
+# environment_parameters:
+#   agent_A:
+#     sampler_type: uniform
+#     sampler_parameters:
+#       min_value: 0
+#       max_value: 4
+#   agent_B:
+#     sampler_type: uniform
+#     sampler_parameters:
+#       min_value: 0
+#       max_value: 4
