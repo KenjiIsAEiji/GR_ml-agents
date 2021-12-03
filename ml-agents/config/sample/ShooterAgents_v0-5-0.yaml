@@ -4,7 +4,7 @@ behaviors:
     trainer_type: ppo
 
     # basic_settings
-    max_steps: 2500000
+    max_steps: 2000000
     time_horizon: 1024
     summary_freq: 1000
     keep_checkpoints: 5
