@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
     
     // -- reward settings --
     private float timeBonus = 1.0f;
-    private float scoreReward = 0.1f;
+    private float scoreReward = 0.025f;
     private float hitBaseReward = 0.01f;
 
     [Header("-- HUD Settings --")]
@@ -143,12 +143,17 @@ public class GameManager : MonoBehaviour
     public void AgentDefeated(int agentId)
     {
         if(agentId == 0){
+            // 
+            int scoreGap = agentScore[1] - agentScore[0];
+            // 
+            agents[1].AddReward(scoreReward * (4 - scoreGap));
             agentScore[1] = agentScore[1] + 1;
-            agents[1].AddReward(scoreReward);
-
         }else{
+            //
+            int scoreGap = agentScore[0] - agentScore[1];
+            //
+            agents[0].AddReward(scoreReward * (4 - scoreGap));
             agentScore[0] = agentScore[0] + 1;
-            agents[0].AddReward(scoreReward);
         }
         
         Debug.Log("Agent" + agentId + " Defeated!");
