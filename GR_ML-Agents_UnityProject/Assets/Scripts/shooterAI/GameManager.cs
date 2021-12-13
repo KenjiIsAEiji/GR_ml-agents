@@ -143,15 +143,17 @@ public class GameManager : MonoBehaviour
     public void AgentDefeated(int agentId)
     {
         if(agentId == 0){
-            // 
+            // スコア差を算出
             int scoreGap = agentScore[1] - agentScore[0];
-            // 
+            
+            // スコア差に応じて得点時の報酬を与える
             agents[1].AddReward(scoreReward * (4 - scoreGap));
             agentScore[1] = agentScore[1] + 1;
         }else{
-            //
+            // スコア差を算出
             int scoreGap = agentScore[0] - agentScore[1];
-            //
+            
+            // スコア差に応じて得点時の報酬を与える
             agents[0].AddReward(scoreReward * (4 - scoreGap));
             agentScore[0] = agentScore[0] + 1;
         }
