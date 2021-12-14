@@ -32,6 +32,10 @@ public class GameManager : MonoBehaviour
     [Header("-- HUD Settings --")]
     [SerializeField] Text[] ScoreTexts;
 
+    [Header("-- Game data save Settings --")]
+    [SerializeField] bool saveLogEnable = false;
+    [SerializeField] GameLogger logger;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -115,6 +119,7 @@ public class GameManager : MonoBehaviour
         agentScore = new int[agents.Length];
         
         // 環境パラメータからランダムな値(float)を取得し、スコア(int)に割り当て
+        // 環境パラメータが設定されていない場合、それぞれデフォルト値が割り当てられる。
         agentScore[0] = Mathf.RoundToInt(envParameter.GetWithDefault("agent_A", 0));
         agentScore[1] = Mathf.RoundToInt(envParameter.GetWithDefault("agent_B", 0));
 
@@ -149,6 +154,9 @@ public class GameManager : MonoBehaviour
             // スコア差に応じて得点時の報酬を与える
             agents[1].AddReward(scoreReward * (4 - scoreGap));
             agentScore[1] = agentScore[1] + 1;
+
+            // ログが許可されている場合、得点エージェントと現在スコアを渡す
+            if(saveLogEnable)   logger.ScoreLog(1,agentScore[1]);
         }else{
             // スコア差を算出
             int scoreGap = agentScore[0] - agentScore[1];
@@ -156,6 +164,9 @@ public class GameManager : MonoBehaviour
             // スコア差に応じて得点時の報酬を与える
             agents[0].AddReward(scoreReward * (4 - scoreGap));
             agentScore[0] = agentScore[0] + 1;
+
+            // ログが許可されている場合、得点エージェントと現在スコアを渡す
+            if(saveLogEnable)   logger.ScoreLog(0,agentScore[0]);
         }
         
         Debug.Log("Agent" + agentId + " Defeated!");
@@ -190,6 +201,9 @@ public class GameManager : MonoBehaviour
         // Debug.Log("end episode" + " from AgentID " + agentId);
         AgentReset();
         GameAllClear();
+
+        // ログが許可されている場合、試合が終了したことを伝える。
+        if(saveLogEnable) logger.GameEndLog();
     }
 
     public void ScoreToUI()
