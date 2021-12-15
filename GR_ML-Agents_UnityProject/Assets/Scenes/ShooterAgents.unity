@@ -2187,7 +2187,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 944634ac90cdcda4594ca1760389648c, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: ShooterAgents
@@ -2894,7 +2894,7 @@ MonoBehaviour:
   ScoreTexts:
   - {fileID: 1170070176}
   - {fileID: 65909061}
-  saveLogEnable: 0
+  saveLogEnable: 1
   logger: {fileID: 1344997825}
 --- !u!4 &1344997824
 Transform:
@@ -3763,7 +3763,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 944634ac90cdcda4594ca1760389648c, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: ShooterAgents
