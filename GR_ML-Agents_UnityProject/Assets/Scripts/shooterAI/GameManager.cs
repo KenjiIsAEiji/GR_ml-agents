@@ -55,6 +55,9 @@ public class GameManager : MonoBehaviour
             Debug.Log("Episode Interrupted");
             GameAllClear();
             AgentReset();
+            
+            // ログが許可されている場合、試合が終了したことを伝える。
+            if(saveLogEnable) logger.GameEndLog();
         }else{
             // step reward
             agents[0].AddReward(-(1/maxEnvironmentSteps));
