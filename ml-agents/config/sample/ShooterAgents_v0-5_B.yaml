@@ -16,7 +16,7 @@ behaviors:
       # PPO_and_SAC_common_settings
       batch_size: 2048
       buffer_size: 20480
-      learning_rate: 0.001
+      learning_rate: 0.005
       learning_rate_schedule: constant
       
       # PPO_only_settings
