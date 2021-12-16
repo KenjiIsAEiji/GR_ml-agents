@@ -11,6 +11,8 @@ public class GameLogger : MonoBehaviour
 
     private List<string> gameScoreDatas;
 
+    private string[] agentLabel = {"A","B"};
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class GameLogger : MonoBehaviour
 
     public void ScoreLog(int agentID, int nowScore)
     {
-        string data = agentID.ToString() + ":" + nowScore.ToString();
+        string data = agentLabel[agentID] + " " + nowScore.ToString();
 
         gameScoreDatas.Add(data);
 
