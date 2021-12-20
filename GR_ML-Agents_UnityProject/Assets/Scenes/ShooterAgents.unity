@@ -2894,7 +2894,7 @@ MonoBehaviour:
   ScoreTexts:
   - {fileID: 1170070176}
   - {fileID: 65909061}
-  saveLogEnable: 1
+  saveLogEnable: 0
   logger: {fileID: 1344997825}
 --- !u!4 &1344997824
 Transform:
